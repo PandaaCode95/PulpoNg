@@ -1,0 +1,42 @@
+<div class="bg-gray-100 ">
+ 
+    <div class="flex justify-center h-screen w-screen items-center">
+        <div class="w-full md:w-1/2 flex flex-col items-center h-100">
+            
+            <div class="h-24 w-80 mb-10 flex justify-center">
+                <img class="h-full w-auto" src="assets/img/pulpo-logo.png" alt="Pulpo">
+            </div>
+            
+
+            <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+                <div class="form-group mb-5">
+                    
+                    <input type="text" placeholder="User" name="nick" class="w-full py-4 px-8 bg-slate-300 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " [(ngModel)]="user.nick" #nick="ngModel"
+                        [ngClass]="{'is-invalid': (nick.dirty || nick.touched) && nick.invalid }" required>
+                    <!-- <div *ngIf="(nick.dirty || nick.touched) && nick.invalid " class="invalid-feedback">
+                        <div *ngIf="nick.errors?.['required']">El usuario es obligatorio</div>
+                    </div> -->
+                </div>
+
+                <div class="form-group mb-5">
+                    
+                    <input type="password" placeholder="Password"name="password" class="w-full py-4 px-8 bg-slate-300 placeholder:font-semibold rounded hover:ring-1 outline-blue-500" [(ngModel)]="user.password "
+                        #password="ngModel"
+                        [ngClass]="{'is-invalid': (password .dirty || password .touched) && password .invalid }"
+                        required>
+                   
+                </div>
+                
+                <div class="form-group flex justify-center">
+                    <button type="submit" class="py-4 bg-blue-400 w-full rounded text-blue-50 font-bold hover:bg-blue-700" [disabled]="userForm.invalid">Log-In</button>
+                </div>
+                    <!-- <div class="invalid-feedback mt-5 text-red-500" *ngIf="(password .dirty || password .touched) && password .invalid">
+                        <div *ngIf="password.errors?.['required']">El password es obligatorio
+                        </div>
+                    </div> -->
+            </form>
+        </div>
+    </div>
+
+</div>

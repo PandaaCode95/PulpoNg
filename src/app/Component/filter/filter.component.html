@@ -1,0 +1,116 @@
+
+
+<div class="h-full w-full flex flex-col">
+    <div class="filtrado h-40">
+        <form #filterForm="ngForm" (ngSubmit)="onSubmitFilter(filterForm)">
+  
+                <div class="flex flex-row justify-between w-full mt-5">
+
+                        <div class="form-group mb-5 w-1/6 flex justify-center">                 
+                                <select type="text" placeholder="Modelo" name="modelf" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                    [(ngModel)]="vehicle.brand" #modelf="ngModel" >
+                            
+                                    <option value="ford">Ford</option>
+                                    <option value="skoda">Skoda</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="renault">Renault</option>
+                                    <option value="mazda">Mazda</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                        </div>
+                        <div class="form-group mb-5 w-1/6 flex justify-center">     
+                            <select type="text" placeholder="Color" name="color" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.color" #colorf="ngModel" >
+                        
+                                <option value="rojo">Rojo</option>
+                                <option value="blanco">Blanco</option>
+                                <option value="azul">Azul</option>
+                                <option value="negro">Negro</option>
+                            </select>
+                        </div>
+               
+                        <div class="form-group mb-5 w-1/6 flex justify-center">               
+                            <input type="text" placeholder="Model" name="brand" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.model" #brandf="ngModel" >
+                        
+                        </div>
+
+                        <div class="form-group mb-5 w-1/6 flex justify-center ">               
+                            <input type="number" placeholder="0000" name="year" max="3000"  class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.year" #yeafr="ngModel"  >
+                        
+                        </div>
+
+
+                
+                    <div class="form-group mb-5 w-1/6 flex justify-center">               
+                        <input type="date" placeholder="Día entrada" name="entry_date" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.entry_date" #entry_datef="ngModel" > 
+                    </div>
+                                
+                       
+                    <div class="form-group mb-5 w-1/6 flex justify-center">     
+                        <select name="status" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.status" #statusf="ngModel" >
+                       
+                            <option value="undefined" disabled hidden selected>
+                            {{vehicle.status}}
+                            </option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group flex justify-center">
+                    <button type="submit" class="py-2 bg-blue-400 w-1/4 rounded text-blue-50 font-bold hover:bg-blue-700" [disabled]="filterForm.invalid">Filtrar</button>
+                </div>
+                
+            </form>
+            <div class="flex justify-center">
+
+                <button (click)="getVehicles()" class="my-2 py-2 bg-blue-400 w-1/4 rounded text-blue-50 font-bold hover:bg-blue-700">Reset</button>
+            </div>
+
+        
+    </div>
+     <div class="vehicle flex flex-row bg-gray-300 shadow-md align-middle h-fit" >
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Marca</p>
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Modelo</p>
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Año</p>
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Entrada</p>
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Color</p>
+        <p class = "p-2 bg-gray-400 text-white w-1/6 text-center">Estado</p>
+          <div class="mods w-12 bg-gray-400 flex justify-center items-center" *ngIf="role=='admin'">
+              <img style="height:70% ;" src="assets/img/action.png" alt="action">
+            </div>
+        
+         
+          
+            
+    </div>
+    <div class="vehicle flex flex-col bg-white align-middle text-center" *ngFor="let vehicle of flota">
+        <div class="flex flex-row ">
+
+       
+        <p class = " border-b-2 w-1/6 text-center py-2">{{vehicle.brand}}</p>
+        <p class = " border-b-2 w-1/6 text-center py-2">{{vehicle.model}}</p>
+        <p class = " border-b-2 w-1/6 text-center py-2">{{vehicle.year}}</p>
+        <p class = " border-b-2 w-1/6 text-center py-2">{{vehicle.entry_date}}</p>
+        <p class = " border-b-2 w-1/6 text-center py-2">{{vehicle.color}}</p>
+        <p class = " border-b-2 w-1/6 text-center py-2"[ngClass]="(vehicle.status =='inactivo')?'bg-red-200':'bg-green-200'">{{vehicle.status}}</p>
+        <div class="mods w-12 flex flex-row" *ngIf="role=='admin'">
+              <button (click)="hiddenClick(vehicle)" class ="w-6 h-auto justify-center align-middle"><img class ="w-full h-auto" src="assets/img/edit.png" alt=""></button>
+              <button (click)="deleteVehicle(vehicle)" class ="w-6 h-auto justify-center align-middle"><img class ="w-10/12 h-auto" src="assets/img/trash-bin.png" alt=""></button>
+            </div>
+           
+        </div>
+        <div class="cont">
+ 
+        </div>
+    </div>
+         <div *ngIf="!this.hidden" class="modal-edit">
+              <app-del-put [vehicle]="vehiculo"></app-del-put>
+         </div>
+        </div>

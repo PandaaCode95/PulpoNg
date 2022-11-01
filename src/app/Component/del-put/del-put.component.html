@@ -1,0 +1,138 @@
+
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+                <div class="flex flex-row justify-between w-full mt-5">
+
+                        <div class="form-group mb-5 w-1/6 flex justify-center">                 
+                                <select type="text" placeholder="Modelo" name="modelf" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                    [(ngModel)]="vehicle.brand" #modelf="ngModel" >
+
+                                    <option value="{{vehicle.model}}" disabled hidden selected> {{vehicle.model}}</option>
+                                    <option value="ford">Ford</option>
+                                    <option value="skoda">Skoda</option>
+                                    <option value="mercedes">Mercedes</option>
+                                    <option value="bmw">BMW</option>
+                                    <option value="renault">Renault</option>
+                                    <option value="mazda">Mazda</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                        </div>
+                        <div class="form-group mb-5 w-1/6 flex justify-center">     
+                            <select type="text" placeholder="Color" name="color" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.color" #colorf="ngModel" >
+
+                                <option value="{{vehicle.model}}" disabled hidden selected> {{vehicle.model}}</option>
+                                <option value="rojo">Rojo</option>
+                                <option value="blanco">Blanco</option>
+                                <option value="azul">Azul</option>
+                                <option value="negro">Negro</option>
+                            </select>
+                        </div>
+               
+                        <div class="form-group mb-5 w-1/6 flex justify-center">               
+                            <input type="text" placeholder="Model" name="brand" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.model" #brandf="ngModel" >
+                        
+                        </div>
+
+                        <div class="form-group mb-5 w-1/6 flex justify-center ">               
+                            <input type="number" placeholder="0000" name="year" max="3000"  class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.year" #yeafr="ngModel"  >
+                        
+                        </div>
+
+
+                
+                    <div class="form-group mb-5 w-1/6 flex justify-center">               
+                        <input type="date" placeholder="Día entrada" name="entry_date" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.entry_date" #entry_datef="ngModel" > 
+                    </div>
+                                
+                       
+                    <div class="form-group mb-5 w-1/6 flex justify-center">     
+                        <select name="status" class="w-3/4 py-2 px-2 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.status" #statusf="ngModel" >
+                       
+                            <option value="undefined" disabled hidden selected>
+                            {{vehicle.status}}
+                            </option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group flex justify-center">
+                    <button type="submit" class="py-2 bg-blue-400 w-1/4 rounded text-blue-50 font-bold hover:bg-blue-700" [disabled]="userForm.invalid">Modificar</button>
+                </div>
+                
+            </form>
+           
+                <!-- <div class="flex flex-row justify-between ">
+
+                    <div class="form-group mb-5 w-1/2">                 
+                            <select type="text" placeholder="Modelo" name="model" class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                                [(ngModel)]="vehicle.model" #model="ngModel" [ngClass]="{'is-invalid': (model.dirty || model.touched) && model.invalid }" required>
+                        
+                                <option value="undefined" disabled hidden selected> {{vehicle.model}}</option>
+                                <option value="ford">Ford</option>
+                                <option value="skoda">Skoda</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="bmw">BMW</option>
+                                <option value="renault">Renault</option>
+                                <option value="mazda">Mazda</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+                  <div class="form-group mb-5 w-1/2 flex justify-end">               
+                    <select type="text" placeholder="Color" name="color" class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                        [(ngModel)]="vehicle.color" #color="ngModel" [ngClass]="{'is-invalid': (color.dirty || color.touched) && color.invalid }" required>
+                
+                        <option value="undefined" disabled hidden selected>{{vehicle.color}}</option>
+                        <option value="rojo">Rojo</option>
+                        <option value="blanco">Blanco</option>
+                        <option value="azul">Azul</option>
+                        <option value="negro">Negro</option>
+                    </select>
+                </div>
+                </div>
+                <div class="flex flex-row justify-between">
+                 <div class="form-group mb-5 w-1/2">               
+                    <input type="text" placeholder="{{vehicle.brand}}" name="brand" class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                        [(ngModel)]="vehicle.brand" #brand="ngModel" [ngClass]="{'is-invalid': (brand.dirty || brand.touched) && brand.invalid }" required>
+                 
+                </div>
+
+                <div class="form-group mb-5 w-1/2 flex justify-end">               
+                    <input type="number" placeholder="{{vehicle.year}}" name="year" max="3000"  class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                        [(ngModel)]="vehicle.year" #year="ngModel" [ngClass]="{'is-invalid': (year.dirty || year.touched) && year.invalid }" required>
+                 
+                </div>
+
+
+                </div>
+                <div class="flex flex-row justify-between">
+                    <div class="form-group mb-5 w-1/2">               
+                        <input type="date" placeholder="Día entrada" name="entry_date" class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.entry_date" #entry_date="ngModel" [ngClass]="{'is-invalid': (entry_date.dirty || entry_date.touched) && entry_date.invalid }" required> 
+                    
+                                
+                    </div>
+                    <div class="form-group mb-5 w-1/2 flex justify-end">      
+                            
+                        <select name="status" class="w-3/4 py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 " 
+                            [(ngModel)]="vehicle.status" #status="ngModel" required>
+                       
+                            <option value="undefined" disabled hidden selected>
+                            {{vehicle.status}}
+                            </option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group flex justify-center">
+                    <button type="submit" class="py-4 bg-blue-400 w-1/2 rounded text-blue-50 font-bold hover:bg-blue-700" [disabled]="userForm.invalid">Create</button>
+                </div> -->
+         
